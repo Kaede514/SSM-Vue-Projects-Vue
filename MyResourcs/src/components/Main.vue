@@ -3,24 +3,15 @@
         <el-container>
             <el-header>
                 <!-- 导航菜单 -->
-                <el-col :span="7">&nbsp;</el-col>
-                <el-col :span="10">
-                    <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
-                        <el-menu-item index="/index">主页</el-menu-item>
-                        <el-col :span="5">&nbsp;</el-col>
-                        <el-menu-item index="/audio">我的音频</el-menu-item>
-                        <el-col :span="5">&nbsp;</el-col>
-                        <el-menu-item index="/image">我的图片</el-menu-item>
-                        <el-col :span="5">&nbsp;</el-col>
-                        <el-menu-item index="/video">我的视频</el-menu-item>
-                    </el-menu>
-                </el-col>
-                <el-col :span="5">&nbsp;</el-col>
-                <el-col :span="2">
-                    <div id="div1" @click="userInfo">
-                        <el-avatar :size="40" :src="imgSrc"></el-avatar>
-                    </div>
-                </el-col>
+                <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
+                    <el-menu-item index="/index">主页</el-menu-item>
+                    <el-menu-item index="/audio">我的音频</el-menu-item>
+                    <el-menu-item index="/image">我的图片</el-menu-item>
+                    <el-menu-item index="/video">我的视频</el-menu-item>
+                </el-menu>
+                <div id="div1" @click="userInfo">
+                    <el-avatar :size="40" :src="imgSrc"></el-avatar>
+                </div>
             </el-header>
             <el-main>
                 <router-view/>
@@ -30,7 +21,6 @@
 </template>
 
 <script>
-import user from "./User";
 
 export default {
     name: "Main",

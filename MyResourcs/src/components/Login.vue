@@ -1,24 +1,24 @@
 <template>
     <div>
-        <el-card class="box-card" style="width: 32vw;height: 18vw;margin: 0 auto;margin-top: 10vw">
+        <el-card class="box-card">
             <div slot="header" class="clearfix" style="text-align: center">
                 <span>表单</span>
             </div>
-            <el-form :model="user" label-position="right" label-width="auto" style="width: 24vw;margin: 0 auto"
+            <el-form :model="user" label-position="right" label-width="auto"
                      :rules="rules" hide-required-asterisk>
                 <el-form-item label="用户名" prop="userName">
                     <el-input v-model="user.userName"></el-input>
                 </el-form-item>
-                <div style="height: 1.2vw;"></div>
+                <div style="height: 20px;"></div>
                 <el-form-item prop="userPassword">
                     <tem slot="label">密&#12288;码</tem>
                     <el-input type="password" v-model="user.userPassword" show-password></el-input>
                 </el-form-item>
             </el-form>
-            <div style="height: 1.4vw;"></div>
-            <div style="width: 12vw;margin: 0 auto">
+            <div style="height: 20px;"></div>
+            <div style="width: 200px;margin: 0 auto">
                 <el-button type="info" @click="register">注册</el-button>
-                <div style="display: inline-block;width: 2.26vw"></div>
+                <div style="display: inline-block;width: 36px"></div>
                 <el-button type="success" @click="login">登录</el-button>
             </div>
         </el-card>

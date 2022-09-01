@@ -1,16 +1,12 @@
 <template>
     <div>
-        <el-row style="height: 2.4vw">
-            <el-col :span="9">&nbsp;</el-col>
-            <el-col :span="6">
-                <el-input v-model="search" size="medium" suffix-icon="el-icon-search" placeholder="请输入关键词搜索"></el-input>
-            </el-col>
-            <el-col :span="4">&nbsp;</el-col>
-            <el-col :span="5">
+        <div id="div1">
+            <div id="div2"></div>
+            <el-input v-model="search" size="medium" suffix-icon="el-icon-search" placeholder="请输入关键词搜索"></el-input>
+            <div id="div3">
                 <el-upload action="http://localhost:8080/audios"
                            accept=".mp3" :show-file-list="false" multiple
-                           :on-success="uploadSuccess" :on-error="uploadError"
-                           style="display: inline-block; margin-right: 10px">
+                           :on-success="uploadSuccess" :on-error="uploadError">
                     <el-button type="primary">点击上传</el-button>
                 </el-upload>
                 <el-popconfirm
@@ -21,25 +17,24 @@
                     icon-color="red"
                     title="此操作将删除所有选中文件, 是否继续?"
                     @confirm="handleMultiDelete">
-                    <el-button style="margin-right: 0.6vw" slot="reference" type="danger" >批量删除</el-button>
+                    <el-button slot="reference" type="danger">批量删除</el-button>
                 </el-popconfirm>
                 <el-button type="info" v-show="isShow" @click="changeShow">取消</el-button>
-            </el-col>
-        </el-row>
-        <el-row style="height: 1vw"></el-row>
+            </div>
+        </div>
         <el-table :data="tableData.filter(data => !search || data.audioName.toLowerCase().includes(search.toLowerCase())
 			      || data.audioSinger.toLowerCase().includes(search.toLowerCase()))" :height="580" size="mini"
                   :row-class-name="showCss" @selection-change="selectChange" border :row-style="{height: '60px'}"
-                  style="font-size: 16px;width: 1411px;margin: 0 auto;overflow-x: hidden" :cell-style="{padding:'0px'}">
-            <el-table-column type="selection" width="50"></el-table-column>
-            <el-table-column prop="audioName" label="歌名" align="center" sortable width="300"></el-table-column>
-            <el-table-column prop="audioSinger" label="歌手" align="center" sortable width="300"></el-table-column>
-            <el-table-column prop="audioUrl" label="歌曲" align="center" width="460">
+                  :cell-style="{padding:'0px'}">
+            <el-table-column type="selection"></el-table-column>
+            <el-table-column prop="audioName" label="歌名" align="center" sortable show-overflow-tooltip></el-table-column>
+            <el-table-column prop="audioSinger" label="歌手" align="center" sortable show-overflow-tooltip></el-table-column>
+            <el-table-column prop="audioUrl" label="歌曲" align="center" show-overflow-tooltip>
                 <i slot-scope="scope">
-                    <audio style="margin-top: 0.4vw" :src="scope.row.audioUrl" controls></audio>
+                    <audio style="margin-top: 6px" :src="scope.row.audioUrl" controls></audio>
                 </i>
             </el-table-column>
-            <el-table-column label="操作" align="center" width="300">
+            <el-table-column label="操作" align="center" show-overflow-tooltip>
                 <i slot-scope="scope">
                     <el-button size="medium" @click="handleEdit(scope.$index,scope.row)">编辑</el-button>
                     <el-popconfirm
@@ -65,19 +60,19 @@
                        :total="total">
         </el-pagination>
         <!-- 修改组件 -->
-        <el-dialog title="请修改" :visible.sync="dialogFormVisible" top="10vw" width="28vw" center>
+        <el-dialog title="请修改" :visible.sync="dialogFormVisible" top="140px" width="500px" center>
             <el-form :model="audio">
                 <el-form-item label="歌曲名" label-width="56px">
                     <el-input v-model="audio.audioName" autocomplete="off"></el-input>
                 </el-form-item>
-                <div style="height: 1.6vw"></div>
+                <div style="height: 20px"></div>
                 <el-form-item label="歌手名" label-width="56px">
                     <el-input v-model="audio.audioSinger" autocomplete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <div style="width: 2vw;display: inline-block">&nbsp;</div>
+                <div style="width: 40px;display: inline-block">&nbsp;</div>
                 <el-button type="primary" @click="confirmEdit">确 定</el-button>
             </div>
         </el-dialog>
